@@ -1,0 +1,18 @@
+
+- shell:
+    - ['sudo apt install git curl gnome-keyring dbus-x11 libsecret-tools fzf tmux', Install deps]
+
+- link:
+    ~/.profile: shells/profile
+    ~/.hushlogin: shells/hushlogin
+    ~/.local/etc/profile.d/00-init.sh: shells/profile.d/00-init.sh
+    ~/.local/etc/profile.d/10-env.sh: shells/profile.d/10-env.sh
+    ~/.local/etc/profile.d/20-funcs.sh: shells/profile.d/20-funcs.sh
+    ~/.local/etc/profile.d/25-wsl-env.sh: shells/profile.d/25-wsl-env.sh
+    ~/.local/etc/profile.d/30-dbus-session.sh: shells/profile.d/30-dbus-session.sh
+    ~/.local/etc/profile.d/dns-search.sh: shells/profile.d/dns-search.sh
+    ~/.local/etc/profile.d/php-docker-xdebug.sh: shells/profile.d/php-docker-xdebug.sh
+    ~/.local/etc/profile.d/ssh-tmux.sh: shells/profile.d/ssh-tmux.sh
+    ~/.local/bin/edit: apps/local/edit
+    ~/.local/bin/get-github-keys: apps/local/get-github-keys
+    ~/.local/bin/gpg-agent-relay: apps/local/gpg-agent-relay

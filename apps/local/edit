@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if which code && [ ! -z "$DISPLAY" ]; then
+    code --wait $@
+else
+    vi $@
+fi

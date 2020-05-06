@@ -1,0 +1,15 @@
+
+
+- shell:
+    - ['sudo apt install fzf zsh', Install deps]
+    - ['sudo chsh -s /usr/bin/zsh $USER', Make zsh default shell]
+    - ['[ -d "$HOME/.oh-my-zsh" ] || git clone https://github.com/ohmyzsh/ohmyzsh.git $HOME/.oh-my-zsh', Install oh-my-zsh]
+    - ['[ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ] || git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions', Install oh-my-zsh]
+    - ['[ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" ] || git clone https://github.com/zsh-users/zsh-syntax-highlighting $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting', Install oh-my-zsh]
+
+- link:
+    ~/.zlogout: shells/zsh/zlogout
+    ~/.zprofile: shells/zsh/zprofile
+    ~/.zshenv: shells/zsh/zshenv
+    ~/.zshrc: shells/zsh/zshrc
+    ~/.oh-my-zsh/custom/themes/simple-nc.zsh-theme: shells/zsh/simple-nc.zsh-theme

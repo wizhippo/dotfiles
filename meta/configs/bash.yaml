@@ -1,0 +1,4 @@
+
+- link:
+    ~/.bashrc: shells/bash/bashrc
+    ~/.bash_logout: shells/bash/bash_logout

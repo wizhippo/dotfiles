@@ -1,0 +1,3 @@
+
+- shell:
+    - ['[ -z "$WSL_DISTRO_NAME" ] || sudo apt install wslu', install wslu]

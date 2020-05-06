@@ -1,0 +1,6 @@
+[user]
+	name = Douglas Hammond
+	email = wizhippo@gmail.com
+[core]
+	autocrlf = input
+	excludesfile = /home/dhammond/.gitignore_global

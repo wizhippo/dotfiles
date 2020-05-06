@@ -1,0 +1,3 @@
+#!/bin/sh
+
+secret-tool lookup application ansible service vault username $USER

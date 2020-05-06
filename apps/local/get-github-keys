@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# get-github-keys
+# pipe the output to an ~/.ssh/authorized_keys file to grant ssh access
+# of a system to a github user. Probably has other uses as well!
+
+set +x
+set +e
+set -u
+set -o pipefail
+
+function __usage() {
+    echo "Usage: $0 GITHUB_USERNAME" >&2
+    exit 1
+}
+
+function __get_github_keys() {
+  NAME=${@:1}
+  case $NAME in
+      "--help"|"-h"|"")
+        __usage
+        ;;
+      *)
+  esac
+  URL="https://github.com/$NAME.keys"
+  KEY_DATA=$( curl -sfL "$URL" )
+  EXIT_CODE=$?
+  if [ 0 -ne "$EXIT_CODE" ]; then
+      echo "Failed to get $URL" >&2
+      exit "$EXIT_CODE"
+  fi
+
+  if [ -z "$KEY_DATA" ] ; then
+      echo "No keys found for $NAME" >&2
+      exit 0
+  fi
+
+  echo
+  echo "# $URL"
+  echo "$KEY_DATA"
+  echo
+}
+
+__get_github_keys "$@"

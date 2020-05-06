@@ -1,0 +1,4 @@
+
+- link:
+    ~/.gitconfig: apps/git/gitconfig
+    ~/.gitignore_global: apps/git/gitignore_global

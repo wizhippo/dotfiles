@@ -1,0 +1,9 @@
+[ -e /etc/profile ] && emulate sh -c 'source /etc/profile'
+[ -e $HOME/.profile ] && emulate sh -c 'source $HOME/.profile'
+
+if [ -d $HOME/.local/etc/profile.d ]; then
+  for i in $HOME/.local/etc/profile.d/*.zsh(N); do
+    [ -r $i ] && . $i
+  done
+  unset i
+fi
