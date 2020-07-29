@@ -1,8 +1,10 @@
-ansible
+sh
 bash
-git
-profile
-ssh
-tmux
-wsl
 zsh
+git
+tmux
+mc
+wsl
+gtk-3.0
+jetbrains-toolbox
+ansible

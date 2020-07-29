@@ -115,3 +115,10 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+if [ -d "$HOME/.local/etc/sh.d" ]; then
+  for i in $HOME/.local/etc/sh.d/*.sh; do
+    [ -r $i ] && . $i
+  done
+  unset i
+fi

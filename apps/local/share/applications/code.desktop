@@ -1,0 +1,9 @@
+[Desktop Entry]
+Exec=code %f
+Version=1.0
+Type=Application
+Categories=Development
+Name=VS Code
+StartupWMClass=vscode
+Terminal=false
+MimeType=text/x-log;

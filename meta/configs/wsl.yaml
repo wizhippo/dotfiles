@@ -1,3 +1,7 @@
-
 - shell:
-    - ['[ -z "$WSL_DISTRO_NAME" ] || sudo apt install wslu', install wslu]
+    - ['[ -z "$WSL_DISTRO_NAME" ] || sudo apt install -y wslu socat xdotool', install wslu]
+
+- link:
+    ~/.local/etc/sh.d/25-wsl-env.sh: apps/wsl/25-wsl-env.sh
+    ~/.local/bin/win-gpg-agent-relay: apps/wsl/win-gpg-agent-relay
+    ~/.local/bin/gatherwindows: apps/wsl/gatherwindows

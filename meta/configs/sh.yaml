@@ -1,0 +1,38 @@
+- shell:
+    - ['sudo apt install -y git curl libsecret-tools fzf tmux', Install deps]
+
+- create:
+    - ~/.local/etc/sh.d
+
+- link:
+    ~/.profile:
+        force: true
+        path: shells/profile
+
+    ~/.hushlogin:
+        force: true
+        path: shells/hushlogin
+
+    ~/.local/etc/sh.d/10-env.sh:
+        force: true
+        path: shells/sh.d/10-env.sh
+
+    ~/.local/etc/sh.d/20-funcs.sh:
+        force: true
+        path: shells/sh.d/20-funcs.sh
+
+    ~/.local/etc/sh.d/50-php-docker-xdebug.sh:
+        force: true
+        path: shells/sh.d/50-php-docker-xdebug.sh
+
+    ~/.local/etc/sh.d/50-ssh-tmux.sh:
+        force: true
+        path: shells/sh.d/50-ssh-tmux.sh
+
+    ~/.local/bin/edit:
+        force: true
+        path: apps/local/edit
+
+    ~/.local/bin/get-github-keys:
+        force: true
+        path: apps/local/get-github-keys

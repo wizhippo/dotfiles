@@ -1,0 +1,10 @@
+- create:
+    - ~/.config/gtk-3.0
+
+- link:
+    ~/.config/gtk-3.0/settings.ini: apps/gtk-3.0/settings.ini
+
+- shell:
+    - ['sudo apt install -y libsecret-tools xdg-utils nautilus seahorse', Install deps]
+    - ['gsettings set org.gnome.desktop.interface gtk-theme Adwaita', Set theme ]
+    - ['gsettings set org.gnome.desktop.interface color-scheme prefer-dark', Set dark theme prefered]

@@ -1,3 +1,11 @@
 #!/bin/sh
 
-secret-tool lookup application ansible service vault username $USER
+SECRET=`secret-tool lookup application ansible service vault username $USER`
+
+if [ -z "$SECRET" ]; then
+    echo "No vault scret found in keychain"
+    echo "Please set using \"secret-tool store --label=\"Ansible vault secret\" application ansible service vault username $USER\" "
+    exit 1;
+fi
+
+echo $SECRET
