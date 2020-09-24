@@ -7,6 +7,6 @@ fi
 # Docker native
 ip -4 addr show docker0 > /dev/null 2>&1
 if [ $? -eq 0 ]; then
-    export XDEBUG_CONFIG=remote_host$(ip -4 addr show docker0 | grep -Po 'inet \K[\d.]+')
+    export XDEBUG_CONFIG=remote_host=host.docker.internal
     return 0
 fi
