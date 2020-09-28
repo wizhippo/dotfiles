@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ ! -z "$WSL_DISTRO_NAME" ] && [ -z "$WSL_HOST_IP" ]; then
-    SEARCH_LIST=$(powershell.exe "(Get-DnsClientGlobalSetting).SuffixSearchList")
+    SEARCH_LIST=$(powershell.exe -Command '$list = (Get-DnsClientGlobalSetting).SuffixSearchList; [system.String]::Join(" ", $list)' | tr -d '\r')
     if [ ! -z "$SEARCH_LIST" ]; then
         sudo cat /etc/resolv.conf > /tmp/resolv.conf.new
         sudo sed -i '/^search/d' /tmp/resolv.conf.new
