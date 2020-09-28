@@ -15,5 +15,7 @@ if [ ! -z "$WSL_DISTRO_NAME" ] && [ -z "$WSL_HOST_IP" ]; then
 
     powershell.exe -File $HOME/.dotfiles/apps/wsl/wsl.ps1 -HostIP $WSL_HOST_IP -ClientIP $WSL_CLIENT_IP
 
-    ~/.local/bin/gpg-agent-relay start
+    if [ ! -z $(echo $(~/.local/bin/gpg-agent-relay status) | grep 'is not running') ]; then
+        ~/.local/bin/gpg-agent-relay start
+    fi;
 fi
