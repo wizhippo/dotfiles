@@ -22,6 +22,7 @@ die() {
 
 main() {
   checkdeps
+  checkwindowsdeps
   case $1 in
   start)
     if ! start-stop-daemon --pidfile "$PIDFILE" --background --notify-await --notify-timeout 5 --make-pidfile --exec "$0" --start -- foreground; then
@@ -54,8 +55,8 @@ relay() {
   winuser=${winuser//$'\r'}
   local winhome="/mnt/c/Users/$winuser"
   local wingnupghome="C:/Users/$winuser/AppData/Roaming/gnupg"
-  local npiperelay="$winhome/.local/bin/npiperelay.exe"
-  local wslsshpageant="$winhome/.local/bin/wsl-ssh-pageant-amd64-gui.exe"
+  local npiperelay="$winhome/AppData/Roaming/npiperelay/npiperelay.exe"
+  local wslsshpageant="$winhome/AppData/Roaming/wsl-ssh-pageant/wsl-ssh-pageant-amd64-gui.exe"
   local gpgconnectagent="/mnt/c/Program Files (x86)/GnuPG/bin/gpg-connect-agent.exe"
   local gpgagentsocket="$GNUPGHOME/S.gpg-agent"
   local sshagentsocket="$GNUPGHOME/S.gpg-agent.ssh"
@@ -112,6 +113,56 @@ checkdeps() {
       return 1
     fi
   done
+}
+
+checkwindowsdeps() {
+  local winuser
+  winuser=$(/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe '$env:UserName')
+  winuser=${winuser//$'\r'}
+  local winhome="/mnt/c/Users/$winuser"
+  local wslsshpageanthome="$winhome/AppData/Roaming/wsl-ssh-pageant"
+  local wslsshpageant="$wslsshpageanthome/wsl-ssh-pageant-amd64-gui.exe"
+  local npiperelayhome="$winhome/AppData/Roaming/npiperelay"
+  local npiperelay="$npiperelayhome/npiperelay.exe"
+
+  if [ ! -e $wslsshpageant ]; then
+    read -p "Install wslsshpageant on windows? [y/n]" -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+      mkdir $wslsshpageanthome
+      curl -sL https://api.github.com/repos/benpye/wsl-ssh-pageant/releases/latest \
+        | grep "browser_download_url.*wsl-ssh-pageant-amd64-gui\.exe" \
+        | cut -d : -f 2,3 \
+        | tr -d \" \
+        | wget -O $wslsshpageant -qi -
+    fi
+  fi
+
+  if [ ! -e $wslsshpageant ]; then
+    echo "Missing '$wslsshpageant'"
+    exit 1
+  fi
+  
+  if [ ! -e $npiperelay ]; then
+    read -p "Install npiperelay on windows? [y/n]" -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+      mkdir $npiperelayhome
+      local tmpfile=`mktemp`
+      curl -sL https://api.github.com/repos/jstarks/npiperelay/releases/latest \
+        | grep "browser_download_url.*npiperelay_windows_amd64\.zip" \
+        | cut -d : -f 2,3 \
+        | tr -d \" \
+        | wget -qi - -O $tmpfile
+      unzip -d $npiperelayhome $tmpfile
+      rm $tmpfile
+    fi
+  fi
+
+  if [ ! -e $npiperelay ]; then
+    echo "Missing '$npiperelay'"
+    exit 1
+  fi
 }
 
 main "$@"
