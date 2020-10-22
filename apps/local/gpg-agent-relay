@@ -66,8 +66,9 @@ relay() {
 
   "$gpgconnectagent" /bye
 
-  "$wslsshpageant" --systray --winssh ssh-pageant 2>/dev/null &
-  WSPPID=$!
+  powershell.exe -File $HOME/.dotfiles/apps/wsl/wsl-pagent.ps1
+  # "$wslsshpageant" --systray --winssh ssh-pageant 2>/dev/null &
+  # WSPPID=$!
 
   socat UNIX-LISTEN:"$gpgagentsocket,unlink-close,fork,umask=177" EXEC:"$npiperelay -ep -ei -s -a '${wingnupghome}/S.gpg-agent'",nofork &
   GNUPID=$!
