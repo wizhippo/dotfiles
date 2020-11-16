@@ -15,7 +15,6 @@ if (-Not (Test-Path $wslPagentFile -PathType Leaf)) {
 }
 
 if ($null -eq $wslJob) {
-   echo "poop"
    if ((CheckAdmin) -eq $false) {
       if ($Elevated) {
          "Could not elevate to create scheduled job" | Out-Host
@@ -29,9 +28,11 @@ if ($null -eq $wslJob) {
    } 
    else {
       try {
-         Register-ScheduledJob -Name wsl-ssh-pageant -Trigger (New-JobTrigger -AtLogOn) -RunNow -ScriptBlock {
-            & "${env:APPDATA}/wsl-ssh-pageant/wsl-ssh-pageant-amd64-gui.exe" --systray --winssh ssh-pageant
-         }
+         $User = "$env:USERDOMAIN\$env:USERNAME"
+         $Trigger = New-ScheduledTaskTrigger -AtLogOn -User $User
+         $Principal = New-ScheduledTaskPrincipal -UserID "$User"
+         $Action = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument 'invoke-command -scriptblock {& "${env:APPDATA}/wsl-ssh-pageant/wsl-ssh-pageant-amd64-gui.exe" --systray --winssh ssh-pageant}'
+         $Job = Register-ScheduledTask -TaskName wsl-ssh-pageant -Trigger $Trigger -Principal $Principal -Action $Action
       }
       catch {
          exit 1
@@ -41,5 +42,5 @@ if ($null -eq $wslJob) {
 
 $wslPagent = Get-Process wsl-ssh-pageant-amd64-gui.exe -ErrorAction SilentlyContinue
 if (-Not $wslPagent) {
-   (Get-ScheduledJob -Name wsl-ssh-pageant).StartJob() | Out-Null
+   Start-ScheduledTask -TaskName wsl-ssh-pageant
 }
