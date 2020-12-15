@@ -3,4 +3,3 @@
 	email = wizhippo@gmail.com
 [core]
 	autocrlf = input
-	excludesfile = ~/.gitignore_global

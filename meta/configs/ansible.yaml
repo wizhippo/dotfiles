@@ -1,3 +1,6 @@
 
+- create:
+    - ~/.local/bin
+
 - link:
     ~/.local/bin/vault-env: apps/ansible/vault-env

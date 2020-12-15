@@ -1,5 +1,4 @@
 
-
 - shell:
     - ['sudo apt install fzf zsh', Install deps]
     - ['sudo chsh -s /usr/bin/zsh $USER', Make zsh default shell]
