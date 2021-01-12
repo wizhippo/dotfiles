@@ -1,3 +1,7 @@
 
 - shell:
     - ['[ -z "$WSL_DISTRO_NAME" ] || sudo apt install wslu socat', install wslu]
+
+- link:
+    ~/.local/etc/profile.d/25-wsl-env.sh: apps/wsl/25-wsl-env.sh
+    ~/.local/bin/gpg-agent-relay: apps/wsl/gpg-agent-relay
