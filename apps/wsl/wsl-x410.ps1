@@ -16,6 +16,11 @@ $name = "X410 WSL (In)"
 $fwRule = Get-NetFirewallRule -DisplayName $name -ErrorAction Ignore
 $fwFilter = Get-NetFirewallRule -DisplayName $name -ErrorAction Ignore | Get-NetFirewallAddressFilter
 
+$x410Process = Get-Process $x410DefaultName -ErrorAction Ignore
+if ($null -eq $x410Process) {
+   Start-Process -NoNewWindow x410 -ArgumentList "/listen hyperv /wm" 
+}
+
 if (($null -eq $fwRule) -or ($fwFilter.LocalAddress -ne $HostIP) -or ($fwFilter.RemoteAddress -ne $ClientIP) -or ($null -ne $x410DefaultRule)) {
    if ((CheckAdmin) -eq $false) {
       if ($Elevated) {
