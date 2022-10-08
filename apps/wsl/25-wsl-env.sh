@@ -1,6 +1,6 @@
 #!/bin/sh
 
-[ ! -z "$WSL_DISTRO_NAME" ] || exit 0
+[ ! -z "$WSL_DISTRO_NAME" ] || return 0
 
 # HOST_NS_SEARCH_LIST=$(powershell.exe -Command '$list = (Get-DnsClient).ConnectionSpecificSuffix; [system.String]::Join(" ", $list)' | tr -d '\r' | xargs)
 # NS_SEARCH_LIST=$(cat /etc/resolv.conf | grep search | awk '{print $2; exit;}')
@@ -28,29 +28,31 @@ if [ ! -z "CLIENT_IP" ] && [ "$CLIENT_IP" != "$WSL_CLIENT_IP" ]; then
     HAS_CHANGE="yes"
 fi
 
- if [ "$HAS_CHANGE" != "no" ]; then
-     if [ "$XDG_RUNTIME_DIR" != "/mnt/wslg/runtime-dir" ]; then
-        if [ ! -d /tmp/.X11-unix ]; then
-            mkdir -p /tmp/.X11-unix
-        fi 
-        if [ ! -x /tmp/.X11-unix/X0.pid ]; then
-            touch /tmp/.X11-unix/X0.pid
-        fi
+# if [ "$HAS_CHANGE" != "no" ]; then
+#     if [ "$XDG_RUNTIME_DIR" != "/mnt/wslg/runtime-dir" ]; then
+#         if [ ! -d /tmp/.X11-unix ]; then
+#             mkdir -p /tmp/.X11-unix
+#         fi 
+#         if [ ! -x /tmp/.X11-unix/X0.pid ]; then
+#             touch /tmp/.X11-unix/X0.pid
+#         fi
 
-        local pid
-        pid=$(cat /tmp/.X11-unix/X0.pid);
+#         local pid
+#         pid=$(cat /tmp/.X11-unix/X0.pid);
 
-        if ! kill -0 $pid > /dev/null 2>&1; then
-            rm -f /tmp/.X11-unix/X0
-            socat -b65536 UNIX-LISTEN:/tmp/.X11-unix/X0,fork,mode=777 VSOCK-CONNECT:2:6000 &
-            pid="$!"
-            echo $pid > /tmp/.X11-unix/X0.pid
-        fi
-        export DISPLAY=:0.0
-#         export DISPLAY=$WSL_HOST_IP:0.0
-         powershell.exe -ExecutionPolicy Bypass -File $HOME/.dotfiles/apps/wsl/wsl-x410.ps1 -HostIP $WSL_HOST_IP -ClientIP $WSL_CLIENT_IP
-     fi
- fi
+#         if ! kill -0 $pid > /dev/null 2>&1; then
+#             rm -f /tmp/.X11-unix/X0
+#             socat -b65536 UNIX-LISTEN:/tmp/.X11-unix/X0,fork,mode=777 VSOCK-CONNECT:2:6000 &
+#             pid="$!"
+#             echo $pid > /tmp/.X11-unix/X0.pid
+#         fi
+         export DISPLAY=:0.0
+         # unable to create keyring use below
+#         dbus-update-activation-environment --systemd DISPLAY         
+#         # export DISPLAY=$WSL_HOST_IP:0.0
+#         powershell.exe -ExecutionPolicy Bypass -File $HOME/.dotfiles/apps/wsl/wsl-x410.ps1 -HostIP $WSL_HOST_IP -ClientIP $WSL_CLIENT_IP
+#     fi
+# fi
 
 # https://github.com/rupor-github/win-gpg-agent
 # win-gpg-agent should be running first from windows
@@ -59,7 +61,7 @@ fi
 if [  $(uname -a | grep -c "Microsoft") -eq 1 ]; then
     export ISWSL=1 # WSL 1
 elif [ $(uname -a | grep -c "microsoft") -eq 1 ]; then
-    export ISWSL=2 # WSL 2
+   export ISWSL=2 # WSL 2
 else
     export ISWSL=0
 fi

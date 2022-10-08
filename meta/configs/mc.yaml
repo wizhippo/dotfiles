@@ -4,3 +4,4 @@
 - link:
     ~/.config/mc/panels.ini:
         path: apps/mc/panels.ini
+        force: true

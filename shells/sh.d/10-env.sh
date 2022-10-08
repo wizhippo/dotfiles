@@ -1,11 +1,13 @@
 #!/bin/sh
 
-# set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/share/JetBrains/Toolbox/scripts" ] ; then
+    PATH="$HOME/.local/share/JetBrains/Toolbox/scripts:$PATH"
+fi
+
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
