@@ -5,7 +5,7 @@
     - ['sudo apt install -y fzf zsh', Install deps]
     - ['sudo chsh -s /usr/bin/zsh $USER', Make zsh default shell]
     - ['[ -d "$HOME/.local/bin/oh-my-posh" ] || wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O ~/.local/bin/oh-my-posh && chmod +x ~/.local/bin/oh-my-posh', Install oh-my-posh]
-    - ['[ -d "$HOME/.poshthemes" ] || (mkdir $HOME/.poshthemes && wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -O $HOME/.poshthemes/themes.zip && unzip $HOME/.poshthemes/themes.zip -d $HOME/.poshthemes && chmod u+rw $HOME/.poshthemes/*.json && rm $HOME/.poshthemes/themes.zip)', Install oh-my-posh themes]
+    - ['[ -d "$HOME/.local/share/poshthemes" ] || (mkdir $HOME/.local/share/poshthemes && wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -O $HOME/.local/share/poshthemes/themes.zip && unzip $HOME/.local/share/poshthemes/themes.zip -d $HOME/.local/share/poshthemes && chmod u+rw $HOME/.local/share/poshthemes/*.json && rm $HOME/.local/share/poshthemes/themes.zip)', Install oh-my-posh themes]
     - ['[ -d "$HOME/.zsh/zsh-autosuggestions" ] || git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.zsh/zsh-autosuggestions', Install zsh-autosuggestions]
     - ['[ -d "$HOME/.zsh/zsh-syntax-highlighting" ] || git clone https://github.com/zsh-users/zsh-syntax-highlighting $HOME/.zsh/zsh-syntax-highlighting', Install zsh-syntax-highlighting]
 
