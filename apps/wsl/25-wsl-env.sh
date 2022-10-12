@@ -46,7 +46,7 @@ fi
 #             pid="$!"
 #             echo $pid > /tmp/.X11-unix/X0.pid
 #         fi
-         export DISPLAY=:0.0
+        #  export DISPLAY=:0.0
          # unable to create keyring use below
 #         dbus-update-activation-environment --systemd DISPLAY         
 #         # export DISPLAY=$WSL_HOST_IP:0.0
@@ -81,3 +81,12 @@ fi
 if [ command -v wslview &> /dev/null ]; then
     export BROWSER=wslview
 fi
+
+export DISPLAY=:0.0
+
+# somtimes dbus is not up yet from sytemd, wait for it
+NEXT_WAIT_TIME=0
+until [ $NEXT_WAIT_TIME -eq 5 ] || pgrep -u $UID dbus > /dev/null; do
+    sleep $(( NEXT_WAIT_TIME++ ))
+done
+[ $NEXT_WAIT_TIME -lt 5 ] && dbus-update-activation-environment --systemd --all

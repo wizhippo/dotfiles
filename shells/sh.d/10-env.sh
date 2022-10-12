@@ -21,6 +21,3 @@ fi
 if [ -e $HOME/.local/bin/vault-env ]; then
     export ANSIBLE_VAULT_PASSWORD_FILE=$HOME/.local/bin/vault-env
 fi
-
- export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
- 
