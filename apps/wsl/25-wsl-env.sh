@@ -55,3 +55,8 @@ if [ "$XDG_RUNTIME_DIR" != "/mnt/wslg/runtime-dir" ]; then
     [ $NEXT_WAIT_TIME -lt 5 ] && dbus-update-activation-environment --systemd --all
     unset $NEXT_WAIT_TIME
 fi
+
+if pgrep -a -u $UID gnome-keyring-d >/dev/null; then
+    export GNOME_KEYRING_CONTROL=/run/user/$UID/keyring
+    export SSH_AUTH_SOCK=/run/user/$UID/keyring/ssh
+fi

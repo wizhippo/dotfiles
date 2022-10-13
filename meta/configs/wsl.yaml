@@ -2,6 +2,6 @@
     - ['[ -z "$WSL_DISTRO_NAME" ] || sudo apt install -y wslu socat', install wslu]
 
 - link:
-    ~/.config/systemd/user/ssh-agent.service: apps/wsl/.config/systemd/user/ssh-agent.service
+    ~/.config/systemd/user/gnome-keyring-daemon.service: apps/wsl/.config/systemd/user/gnome-keyring-daemon.service
     ~/.config/systemd/user/x410-vsock.service: apps/wsl/.config/systemd/user/x410-vsock.service
     ~/.local/etc/sh.d/25-wsl-env.sh: apps/wsl/25-wsl-env.sh
