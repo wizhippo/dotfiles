@@ -1,7 +1,10 @@
 - shell:
-    - ['[ -z "$WSL_DISTRO_NAME" ] || sudo apt install -y wslu socat', install wslu]
+    - ['[ -z "$WSL_DISTRO_NAME" ] || sudo apt install -y wslu socat linux-tools-generic hwdata', install wsl deps]
+    - ['[ -z "$WSL_DISTRO_NAME" ] || sudo update-alternatives --install /usr/local/bin/usbip usbip /usr/lib/linux-tools/$(ls -AU /usr/lib/linux-tools/ | head -1)/usbip 20', install usbip]
+    - ['sudo bash -c "echo \"fs.inotify.max_user_watches = 524288\" > /etc/sysctl.d/inotify.conf"', Increase inotify]
+    - ['sudo sysctl -p --system', Reload sysctl]
 
 - link:
     ~/.config/systemd/user/gnome-keyring-daemon.service: apps/wsl/.config/systemd/user/gnome-keyring-daemon.service
-    ~/.config/systemd/user/x410-vsock.service: apps/wsl/.config/systemd/user/x410-vsock.service
+    # ~/.config/systemd/user/x410-vsock.service: apps/wsl/.config/systemd/user/x410-vsock.service
     ~/.local/etc/sh.d/25-wsl-env.sh: apps/wsl/25-wsl-env.sh

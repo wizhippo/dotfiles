@@ -47,9 +47,9 @@ fi
 
 if [ "$XDG_RUNTIME_DIR" != "/mnt/wslg/runtime-dir" ]; then
     export DISPLAY=:0.0
-    # somtimes dbus is not up yet from sytemd, wait for it
-    local NEXT_WAIT_TIME=0
-    until [ $NEXT_WAIT_TIME -eq 5 ] || pgrep -u $UID dbus > /dev/null; do
+    # somtimes dbus is not up yet from systemd, wait for it
+    NEXT_WAIT_TIME=0
+    until [ $NEXT_WAIT_TIME -eq 5 ] || pgrep -u $UID dbus >/dev/null; do
         sleep $(( NEXT_WAIT_TIME++ ))
     done
     [ $NEXT_WAIT_TIME -lt 5 ] && dbus-update-activation-environment --systemd --all
@@ -60,3 +60,7 @@ if pgrep -a -u $UID gnome-keyring-d >/dev/null; then
     export GNOME_KEYRING_CONTROL=/run/user/$UID/keyring
     export SSH_AUTH_SOCK=/run/user/$UID/keyring/ssh
 fi
+
+# see https://github.com/microsoft/wslg/issues/715
+#export MESA_D3D12_DEFAULT_ADAPTER_NAME="llvm"
+#export LIBGL_ALWAYS_SOFTWARE=true

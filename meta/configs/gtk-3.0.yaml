@@ -8,3 +8,4 @@
     - ['sudo apt install -y libsecret-tools xdg-utils nautilus seahorse', Install deps]
     - ['gsettings set org.gnome.desktop.interface gtk-theme Adwaita', Set theme ]
     - ['gsettings set org.gnome.desktop.interface color-scheme prefer-dark', Set dark theme prefered]
+    - ['bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"',  install JetBrains mono font]
