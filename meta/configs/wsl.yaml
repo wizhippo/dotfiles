@@ -1,14 +1,23 @@
 # https://github.com/arquivolta/wsl-use-windows-openssh/blob/main/README.md
 
 - shell:
-    - ['[ -z "$WSL_DISTRO_NAME" ] || sudo apt install -y wslu socat linux-tools-generic hwdata', install wsl deps]
+    - ['[ -z "$WSL_DISTRO_NAME" ] || sudo apt install -y wslu socat linux-tools-generic hwdata dbus-user-session', install wsl deps]
     - ['[ -z "$WSL_DISTRO_NAME" ] || sudo update-alternatives --install /usr/local/bin/usbip usbip /usr/lib/linux-tools/$(ls -AU /usr/lib/linux-tools/ | head -1)/usbip 20', install usbip]
     - ['sudo bash -c "echo \"fs.inotify.max_user_watches = 524288\" > /etc/sysctl.d/inotify.conf"', Increase inotify]
     - ['sudo sysctl -p --system', Reload sysctl]
-    # - ['bash sudo update-alternatives --set editor /usr/bin/code', set vscode as default editor]
     - [ 'echo "SELECTED_EDITOR=$HOME/.local/bin/edit" > ~/.selected_editor', Set selected editor ]
 
 - link:
-    ~/.config/systemd/user/gnome-keyring-daemon.service: apps/wsl/.config/systemd/user/gnome-keyring-daemon.service
+    ~/.config/systemd/user/gnome-keyring-daemon.service: 
+        path: apps/wsl/.config/systemd/user/gnome-keyring-daemon.service
+        force: true
+        create: true
     # ~/.config/systemd/user/x410-vsock.service: apps/wsl/.config/systemd/user/x410-vsock.service
-    ~/.local/etc/sh.d/25-wsl-env.sh: apps/wsl/25-wsl-env.sh
+    ~/.local/etc/sh.d/25-wsl-env.sh:
+        path: apps/wsl/25-wsl-env.sh
+        force: true
+        create: true
+
+- shell:
+    - ['systemctl --user enable gnome-keyring-daemon.service', Enable gnome-keyring-daemon]
+    - ['systemctl --user start gnome-keyring-daemon.service', Start gnome-keyring-daemon]

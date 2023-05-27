@@ -6,33 +6,44 @@
 
 - link:
     ~/.profile:
-        force: true
         path: shells/profile
+        force: true
 
     ~/.hushlogin:
-        force: true
         path: shells/hushlogin
+        force: true
 
     ~/.local/etc/sh.d/10-env.sh:
-        force: true
         path: shells/sh.d/10-env.sh
+        create: true
+        force: true
 
     ~/.local/etc/sh.d/20-funcs.sh:
-        force: true
         path: shells/sh.d/20-funcs.sh
+        create: true
+        force: true
+
+    ~/.local/etc/sh.d/50-nvm.sh:
+        path: shells/sh.d/50-ssh-tmux.sh
+        create: true
+        force: true
 
     ~/.local/etc/sh.d/50-php-docker-xdebug.sh:
-        force: true
         path: shells/sh.d/50-php-docker-xdebug.sh
+        create: true
+        force: true
 
     ~/.local/etc/sh.d/50-ssh-tmux.sh:
-        force: true
         path: shells/sh.d/50-ssh-tmux.sh
+        create: true
+        force: true
 
     ~/.local/bin/edit:
-        force: true
         path: apps/local/edit
+        create: true
+        force: true
 
     ~/.local/bin/get-github-keys:
-        force: true
         path: apps/local/get-github-keys
+        create: true
+        force: true

@@ -1,4 +1,5 @@
 # https://www.jetbrains.com/toolbox-app/download/download-thanks.html?platform=linux
 
 - shell:
-    - ['sudo apt install -y libasound2 libgbm1 libfuse2', Install deps]
+    - ['sudo apt install -y libasound2 libfuse2 libxi6 libxrender1 libxtst6 mesa-utils libfontconfig libgtk-3-bin tar', Install deps]
+    - ['wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/JetBrainsMono.zip && unzip JetBrainsMono.zip -d ~/.fonts && fc-cache -fv && rm JetBrainsMono.zip', Install JetBrainsMono font]

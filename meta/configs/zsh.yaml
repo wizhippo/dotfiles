@@ -11,14 +11,14 @@
 
 - link:
     ~/.zlogout:
-        force: true
         path: shells/zsh/zlogout
+        force: true
     ~/.zprofile:
-        force: true
         path: shells/zsh/zprofile
+        force: true
     ~/.zshenv:
-        force: true
         path: shells/zsh/zshenv
-    ~/.zshrc:
         force: true
+    ~/.zshrc:
         path: shells/zsh/zshrc
+        force: true

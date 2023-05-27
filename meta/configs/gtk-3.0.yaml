@@ -2,7 +2,10 @@
     - ~/.config/gtk-3.0
 
 - link:
-    ~/.config/gtk-3.0/settings.ini: apps/gtk-3.0/settings.ini
+    ~/.config/gtk-3.0/settings.ini:
+        path: apps/gtk-3.0/settings.ini
+        force: true
+        create: true
 
 - shell:
     - ['sudo apt install -y libsecret-tools xdg-utils nautilus seahorse', Install deps]

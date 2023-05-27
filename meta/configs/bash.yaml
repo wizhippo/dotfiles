@@ -1,7 +1,7 @@
 - link:
     ~/.bashrc:
-        force: true
         path: shells/bash/bashrc
-    ~/.bash_logout:
         force: true
+    ~/.bash_logout:
         path: shells/bash/bash_logout
+        force: true

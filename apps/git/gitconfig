@@ -3,5 +3,3 @@
 	email = wizhippo@gmail.com
 [core]
 	autocrlf = input
-[safe]
-	directory = *
