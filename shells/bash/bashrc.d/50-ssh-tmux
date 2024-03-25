@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
     systemctl --user import-environment

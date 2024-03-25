@@ -1,0 +1,17 @@
+#!/bin/sh
+
+[ ! -z "$WINHOME" ] || return 0
+
+NPIPE_RELAY_PATH="$WINHOME/.local/opt/npiperelay
+
+if [ ! -d ${NPIPE_RELAY_PATH} ]; then
+    mkdir -p ${NPIPE_RELAY_PATH}
+fi
+
+cd ~
+
+wget https://github.com/jstarks/npiperelay/releases/latest/download/npiperelay_windows_amd64.zip
+unzip npiperelay_windows_amd64.zip -d $NPIPE_RELAY_PATH
+rm npiperelay_windows_amd64.zip
+
+sudo apt -y install socat

@@ -1,5 +1,5 @@
 - shell:
-    - ['sudo sudo apt install -y python3 pipx build-essential python3-dev libldap2-dev libsasl2-dev libkrb5-dev krb5-user', Install deps]
+    - ['sudo DEBIAN_FRONTEND=noninteractive apt install -y libsecret-tools python3 pipx build-essential python3-dev libldap2-dev libsasl2-dev libkrb5-dev krb5-user', Install deps]
     - ['pipx install --include-deps ansible', Install ansible]
     - ['pipx inject ansible pywinrm\[kerberos\] pyldap', Install ansible deps]
 

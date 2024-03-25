@@ -1,9 +1,14 @@
 [Unit]
-Description=Gnome Keyring Daemon
+Description=GNOME Keyring daemon
+
+Requires=gnome-keyring-daemon.socket
 
 [Service]
-ExecStart=/usr/bin/gnome-keyring-daemon gnome-keyring-daemon --replace --foreground --components=secrets,ssh,pcks11
-Restart=on-abort
+Type=simple
+StandardError=journal
+ExecStart=/usr/bin/gnome-keyring-daemon --foreground --components="pkcs11,secrets" --control-directory=%t/keyring
+Restart=on-failure
 
 [Install]
-WantedBy=default.target
+Also=gnome-keyring-daemon.socket
+WantedBy=graphical-session-pre.target

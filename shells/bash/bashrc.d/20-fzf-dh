@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# Select lines from history to remove
+dh() {
+    cat $HISTFILE | nl | fzf -m | awk '{ print $1 "d" }' | paste -s -d";" | xargs -I{} sed -i '{}' $HISTFILE
+    history -c && history -r
+}

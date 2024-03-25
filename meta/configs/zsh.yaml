@@ -1,5 +1,6 @@
 - create:
     - ~/.zsh
+    - ~/.local/etc/zshenv.d
 
 - shell:
     - ['sudo apt install -y fzf zsh', Install deps]
@@ -13,12 +14,34 @@
     ~/.zlogout:
         path: shells/zsh/zlogout
         force: true
-    ~/.zprofile:
-        path: shells/zsh/zprofile
-        force: true
     ~/.zshenv:
         path: shells/zsh/zshenv
         force: true
     ~/.zshrc:
         path: shells/zsh/zshrc
+        force: true
+
+    ~/.local/etc/zshenv.d/10-env:
+        path: shells/zsh/zshenv.d/10-env
+        create: true
+        force: true
+    ~/.local/etc/zshenv.d/20-fzf-dh:
+        path: shells/zsh/zshenv.d/20-fzf-dh
+        create: true
+        force: true
+    ~/.local/etc/zshenv.d/25-wsl-env:
+        path: shells/zsh/zshenv.d/25-wsl-env
+        create: true
+        force: true
+    ~/.local/etc/zshenv.d/50-php:
+        path: shells/zsh/zshenv.d/50-php
+        create: true
+        force: true
+    ~/.local/etc/zshenv.d/50-nvm:
+        path: shells/zsh/zshenv.d/50-nvm
+        create: true
+        force: true
+    ~/.local/etc/zshenv.d/50-ssh-tmux:
+        path: shells/zsh/zshenv.d/50-ssh-tmux
+        create: true
         force: true

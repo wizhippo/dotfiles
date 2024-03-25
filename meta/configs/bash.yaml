@@ -1,7 +1,50 @@
+- shell:
+    - ['sudo apt install -y fzf', Install deps]
+
+- create:
+    - ~/.local/etc/bashrc.d
+
 - link:
-    ~/.bashrc:
-        path: shells/bash/bashrc
+    ~/.profile:
+        path: shells/bash/profile
         force: true
     ~/.bash_logout:
         path: shells/bash/bash_logout
+        force: true
+
+    ~/.bashrc:
+        path: shells/bash/bashrc
+        force: true
+    ~/.local/etc/bashrc.d/10-env:
+        path: shells/bash/bashrc.d/10-env
+        create: true
+        force: true
+    ~/.local/etc/bashrc.d/20-fzf-dh:
+        path: shells/bash/bashrc.d/20-fzf-dh
+        create: true
+        force: true
+    ~/.local/etc/bashrc.d/25-wsl-env:
+        path: shells/bash/bashrc.d/25-wsl-env
+        create: true
+        force: true
+    ~/.local/etc/bashrc.d/50-php:
+        path: shells/bash/bashrc.d/50-php
+        create: true
+        force: true
+    ~/.local/etc/bashrc.d/50-nvm:
+        path: shells/bash/bashrc.d/50-nvm
+        create: true
+        force: true
+    ~/.local/etc/bashrc.d/50-ssh-tmux:
+        path: shells/bash/bashrc.d/50-ssh-tmux
+        create: true
+        force: true
+
+    ~/.local/bin/edit:
+        path: apps/local/edit
+        create: true
+        force: true
+    ~/.local/bin/get-github-keys:
+        path: apps/local/get-github-keys
+        create: true
         force: true

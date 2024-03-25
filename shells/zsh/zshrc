@@ -1,9 +1,5 @@
-if [ -d "$HOME/.local/etc/sh.d" ]; then
-  for i in $HOME/.local/etc/sh.d/*.sh; do
-    [ -r $i ] && . $i
-  done
-  unset i
-fi
+# ~/.zshrc - Loaded only for interactive shell sessions. 
+#            It is loaded whenever you open a new terminal window or launch a subshell from a terminal window.
 
 autoload -U zmv
 autoload -U zargs
@@ -31,6 +27,6 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
-eval "$($HOME/.local/bin/oh-my-posh --init --shell zsh --config ~/.local/share/poshthemes/grandpa-style.omp.json)"
-
 TWILIO_AC_ZSH_SETUP_PATH=$HOME/.twilio-cli/autocomplete/zsh_setup && test -f $TWILIO_AC_ZSH_SETUP_PATH && source $TWILIO_AC_ZSH_SETUP_PATH; # twilio autocomplete setup
+
+eval "$($HOME/.local/bin/oh-my-posh --init --shell zsh --config ~/.local/share/poshthemes/grandpa-style.omp.json)"

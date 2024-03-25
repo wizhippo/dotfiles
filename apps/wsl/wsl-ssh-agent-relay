@@ -11,8 +11,9 @@
 # For debugging startup problems uncomment next line
 # exec 2> >(tee -a -i "$HOME/error.log")
 
-#### Assuming ~/winhome links to %USERPROFILE on Windows side
-RELAY_BIN="${HOME}/winhome/.wsl/npiperelay.exe"
+[ ! -z "$WINHOME" ] || return 0
+
+RELAY_BIN="$$WINHOME/.local/opt/npiperelay/npiperelay.exe
 
 PIDFILE="${HOME}/.ssh/wsl-ssh-agent-relay.pid"
 WSL_AGENT_SSH_SOCK="${HOME}/.ssh/wsl-ssh-agent.sock"
