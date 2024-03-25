@@ -1,1 +1,11 @@
+# ~/.zshenv - This is loaded universally for all types of shell sessions
+#             (interactive or non-interactive, login or non-login)
+
+if [ -d "$HOME/.local/etc/zshenv.d" ]; then
+  for i in "$HOME/.local/etc/zshenv.d/"*; do
+    [ -f "$i" ] && source "$i"
+  done
+  unset i
+fi
+
 skip_global_compinit=1
