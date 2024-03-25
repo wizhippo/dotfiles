@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Docker for windows
 if [ ! -z WSL_CLIENT_IP ]; then
     export XDEBUG_CONFIG="remote_host=$WSL_CLIENT_IP client_host=$WSL_CLIENT_IP"

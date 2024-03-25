@@ -1,0 +1,15 @@
+- create:
+    - ~/.zsh
+
+- shell:
+    - ['sudo apt-add-repository ppa:fish-shell/release-3', Add fish repo]
+    - ['sudo apt update', update apt]
+    - ['sudo apt install fish', Install fish]
+    # - ['curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher', Install fisher]
+    # - ['fisher install jorgebucaran/nvm.fish', Install fisher nvm]
+    # - ['sudo chsh -s /usr/bin/fish $USER', Make fish default shell]
+
+- link:
+    ~/.config/fish/config.fish:
+        path: shells/fish/config.fish
+        force: true

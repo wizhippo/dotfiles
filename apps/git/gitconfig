@@ -3,3 +3,30 @@
 	email = wizhippo@gmail.com
 [core]
 	autocrlf = input
+[safe]
+	directory = /home/wizhi/actions-runner/_work/ibexa-core/ibexa-core
+	directory = /home/wizhi/actions-runner/_work/ibexa-core/ibexa-core
+	directory = /home/wizhi/actions-runner-ibexa-oss/_work/ibexa-oss/ibexa-oss
+	directory = /home/wizhi/actions-runner-ibexa-oss/_work/ibexa-oss/ibexa-oss
+	directory = /home/wizhi/actions-runner-ibexa-core/_work/ibexa-core/ibexa-core
+	directory = /home/wizhi/actions-runner-ibexa-core/_work/ibexa-core/ibexa-core
+	directory = /home/wizhi/actions-runner-ibexa-oss/_work/ibexa-oss/ibexa-oss
+	directory = /home/wizhi/actions-runner-ibexa-oss/_work/ibexa-oss/ibexa-oss
+	directory = /home/wizhi/actions-runner-ibexa-oss/_work/ibexa-oss/ibexa-oss
+	directory = /home/wizhi/actions-runner-ibexa-oss/_work/ibexa-oss/ibexa-oss
+	directory = /home/wizhi/actions-runner-ibexa-oss/_work/ibexa-oss/ibexa-oss
+	directory = /home/wizhi/actions-runner-ibexa-oss/_work/ibexa-oss/ibexa-oss
+	directory = /home/wizhi/actions-runner-ibexa-core/_work/ibexa-core/ibexa-core
+	directory = /home/wizhi/actions-runner-ibexa-core/_work/ibexa-core/ibexa-core
+	directory = /home/wizhi/actions-runner-ibexa-core/_work/ibexa-core/ibexa-core
+	directory = /home/wizhi/actions-runner-ibexa-core/_work/ibexa-core/ibexa-core
+	directory = /home/wizhi/actions-runner-ibexa-core/_work/ibexa-core/ibexa-core
+	directory = /home/wizhi/actions-runner-ibexa-core/_work/ibexa-core/ibexa-core
+	directory = /home/wizhi/actions-runner-ibexa-oss/_work/ibexa-oss/ibexa-oss
+	directory = /home/wizhi/actions-runner-ibexa-oss/_work/ibexa-oss/ibexa-oss
+	directory = /home/wizhi/actions-runner-ibexa-core/_work/ibexa-core/ibexa-core
+	directory = /home/wizhi/actions-runner-ibexa-core/_work/ibexa-core/ibexa-core
+	directory = /home/wizhi/actions-runner-ibexa-oss/_work/ibexa-oss/ibexa-oss
+	directory = /home/wizhi/actions-runner-ibexa-oss/_work/ibexa-oss/ibexa-oss
+[init]
+	defaultBranch = main
