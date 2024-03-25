@@ -1,0 +1,15 @@
+[Unit]
+Description=network-mirrored
+Wants=network-pre.target
+WantedBy=multi-user.target
+Before=network-pre.target shutdown.target
+
+[Service]
+Type=oneshot
+User=root
+RemainAfterExit=yes
+ExecStart=/bin/sh -ec '[ -x /usr/bin/wslinfo ] && [ "$(/usr/bin/wslinfo --networking-mode)" = "mirrored" ] || exit 0; echo "add chain ip nat WSLPREROUTING { type nat hook prerouting priority dstnat - 1; policy accept; }; insert rule ip nat WSLPREROUTING iif loopback0 ip daddr 127.0.0.1 counter dnat to 127.0.0.1 comment mirrored;" | /usr/sbin/nft -f -'
+ExecStop=/bin/sh -ec '[ -x /usr/bin/wslinfo ] && [ "$(/usr/bin/wslinfo --networking-mode)" = "mirrored" ] || exit 0; for chain in "ip nat WSLPREROUTING"; do handle=$(/usr/sbin/nft -a list chain $chain | sed -En "s/^.*comment \\"mirrored\\" # handle ([0-9]+)$/\\1/p"); for n in $handle; do echo "delete rule $chain handle $n"; done; done | /usr/sbin/nft -f -'
+
+[Install]
+WantedBy=multi-user.target

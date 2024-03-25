@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Backup current nftables configuration
+sudo nft list ruleset > /etc/nftables.backup
+
+# Define the new rule fragment
+NEW_FRAGMENT="iifname != \"loopback0\""
+
+# Extract the current rules from the DOCKER chain, excluding those already corrected
+rules=$(sudo nft -a list chain ip nat DOCKER | grep -E 'iifname != "[^"]+" (tcp|udp) dport' | grep -v 'iifname != "loopback0"')
+
+# Check if any rules exist that need to be updated
+if [ -n "$rules" ]; then
+  # Loop through each rule and replace it with the updated rule
+  echo "$rules" | while IFS= read -r rule; do
+    # Extract the handle
+    handle=$(echo "$rule" | grep -oE '# handle [0-9]+' | awk '{print $3}')
+    # Extract the existing rule without the handle
+    existing_rule=$(echo "$rule" | sed 's/ # handle [0-9]\+$//')
+    # Extract the existing interface
+    existing_interface=$(echo "$existing_rule" | grep -oE 'iifname != "[^"]+"')
+    # # Remove the old rule using its handle
+    sudo nft delete rule ip nat DOCKER handle "$handle"
+    # Create the new rule by adding the new fragment
+    new_rule=$(echo "$existing_rule" | sed "s/$existing_interface/$existing_interface $NEW_FRAGMENT/")
+    # # Add the new rule to the DOCKER chain
+    sudo nft add rule ip nat DOCKER $new_rule
+  done
+  echo "Rules updated successfully."
+else
+  echo "No matching rules found, nothing to update."
+fi
