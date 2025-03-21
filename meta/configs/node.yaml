@@ -1,0 +1,4 @@
+- shell:
+    - ['curl -o- https://fnm.vercel.app/install | bash', Install fnm]
+    - ['fnm install lts-latest', Install node lts-latest]
+    - ['fnm use lts-latest', Use node lts]

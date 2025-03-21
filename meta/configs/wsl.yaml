@@ -1,12 +1,12 @@
 # https://github.com/arquivolta/wsl-use-windows-openssh/blob/main/README.md
 
 - shell:
-    - ['sudo apt install -y gnome-keyring libsecret-tools', Install keyring requirements]
-    - ['[ -z "$WSL_DISTRO_NAME" ] || sudo apt install -y wslu socat linux-tools-generic hwdata', Install wsl deps]
-    - ['[ -z "$WSL_DISTRO_NAME" ] || sudo update-alternatives --install /usr/local/bin/usbip usbip /usr/lib/linux-tools/$(ls -AU /usr/lib/linux-tools/ | head -1)/usbip 20', install usbip]
+    - ['sudo apt install --no-install-recommends -y gnome-keyring libsecret-tools wslu', Install wsl deps]
+    - ['sudo apt install --no-install-recommends -y socat linux-tools-generic hwdata', Install wsl deps]
+    - ['sudo update-alternatives --install /usr/local/bin/usbip usbip /usr/lib/linux-tools/$(ls -AU /usr/lib/linux-tools/ | head -1)/usbip 20', Install usbip]
     - ['sudo bash -c "echo \"fs.inotify.max_user_watches = 524288\" > /etc/sysctl.d/inotify.conf"', Increase inotify]
     - ['sudo sysctl -p --system', Reload sysctl]
-    - ['echo "SELECTED_EDITOR=$HOME/.local/bin/edit" > ~/.selected_editor', Set selected editor]
+    # - ['echo "SELECTED_EDITOR=$HOME/.local/bin/edit" > ~/.selected_editor', Set selected editor]
 
 # not needed now?
 # - link:
@@ -14,10 +14,19 @@
 #         path: apps/wsl/.config/systemd/user/gnome-keyring-daemon.service
 #         force: true
 #         create: true
-
+#
 # - shell:
 #     - ['systemctl --user enable gnome-keyring-daemon.service', Enable gnome-keyring-daemon]
 #     - ['systemctl --user start gnome-keyring-daemon.service', Start gnome-keyring-daemon]
 
-- shell:
-    - ['wget -qO- https://raw.githubusercontent.com/harry-cpp/code-nautilus/master/install.sh | bash', Open with code]
+# - shell:
+#     - ['systemctl --user enable gcr-ssh-agent.socket', Enable gnome-keyring-daemon]
+#     - ['systemctl --user start gcr-ssh-agent.socket', Start gnome-keyring-daemon]
+
+# - shell:
+#     - ['wget -qO- https://raw.githubusercontent.com/harry-cpp/code-nautilus/master/install.sh | bash', Open with code]
+
+
+ curl -LO https://github.com/BurntSushi/ripgrep/archive/0.7.1.zip
+$ unzip 0.7.1.zip
+$ cd ripgrep-0.7.1

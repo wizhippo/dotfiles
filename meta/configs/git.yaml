@@ -1,5 +1,5 @@
 - shell:
-    - ['sudo apt install -y git', Install deps]
+    - ['sudo apt install --no-install-recommends -y git', Install deps]
 
 - link:
     ~/.gitconfig:

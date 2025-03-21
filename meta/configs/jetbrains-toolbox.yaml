@@ -1,6 +1,6 @@
 # https://www.jetbrains.com/toolbox-app/download/download-thanks.html?platform=linux
 
 - shell:
-    - ['sudo apt install -y libfuse2 libxi6 libxrender1 libxtst6 mesa-utils libfontconfig libgtk-3-bin tar', Install toolbox deps]
+    - ['sudo apt install --no-install-recommends -y libfuse2 libxi6 libxrender1 libxtst6 mesa-utils libfontconfig libgtk-3-bin tar', Install toolbox deps]
     - ['mkdir -p ~/.local/share/fonts', Create local fonts directory]
     - ['wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.tar.xz && tar -xf JetBrainsMono.tar.xz -C ~/.local/share/fonts && fc-cache -fv && rm JetBrainsMono.tar.xz', Install JetBrainsMono font]

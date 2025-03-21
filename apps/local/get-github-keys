@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # get-github-keys
 # pipe the output to an ~/.ssh/authorized_keys file to grant ssh access

@@ -1,5 +1,5 @@
 - shell:
-    - ['sudo apt install -y mc', Install deps]
+    - ['sudo apt install --no-install-recommends -y mc', Install deps]
 
 - link:
     ~/.config/mc/panels.ini:

@@ -1,7 +1,8 @@
-- shell:
-    - ['sudo DEBIAN_FRONTEND=noninteractive apt install -y libsecret-tools python3 pipx build-essential python3-dev libldap2-dev libsasl2-dev libkrb5-dev krb5-user', Install deps]
-    - ['pipx install --include-deps ansible', Install ansible]
-    - ['pipx inject ansible pywinrm\[kerberos\] pyldap', Install ansible deps]
+# Use anisible playbook instead
+# - shell:
+#     - ['sudo DEBIAN_FRONTEND=noninteractive apt install --no-install-recommends -y libsecret-tools python3 pipx build-essential python3-dev libldap2-dev libsasl2-dev libkrb5-dev krb5-user', Install deps]
+#     - ['pipx install --include-deps ansible', Install ansible]
+#     - ['pipx inject ansible pywinrm\[kerberos\] pyldap', Install ansible deps]
 
 - link:
     ~/.local/bin/vault-env:
