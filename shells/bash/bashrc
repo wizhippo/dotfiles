@@ -2,19 +2,43 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-# source local non-interactive bash startup scripts
 if [ -d "$HOME/.local/etc/bashrc.d" ]; then
   for i in "$HOME/.local/etc/bashrc.d/"*; do
-    [ -f "$i" ] && . "$i"
+    [ -f "$i" ] && source "$i"
   done
   unset i
 fi
+
+# cargo
+if [ -f "$HOME/.cargo/env" ]; then
+    . "$HOME/.cargo/env"
+fi
+# cargo end
+
+# fnm
+FNM_PATH="$HOME/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$HOME/.local/share/fnm:$PATH"
+  eval "`fnm env`"
+fi
+# fnm end
+
+# pnpm
+export PNPM_HOME="$HOME/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
 
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
       *) return;;
 esac
+
+# Load ble.sh if interactive
+[[ $- == *i* ]] && source ~/.local/share/blesh/ble.sh --attach=none
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -55,12 +79,12 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-        # We have color support; assume it's compliant with Ecma-48
-        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-        # a case would tend to support setf rather than setaf.)
-        color_prompt=yes
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
     else
-        color_prompt=
+	color_prompt=
     fi
 fi
 
@@ -123,3 +147,12 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# starship
+if [ -f $HOME/.local/bin/starship ]; then
+    eval "$($HOME/.local/bin/starship init bash)"
+fi
+# starship end
+
+# Add the following line at the end of ~/.bashrc
+[[ ! ${BLE_VERSION-} ]] || ble-attach

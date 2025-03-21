@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# If arguments are given, use them; otherwise use find output
+if [ "$#" -gt 0 ]; then
+  dirs=("$@")
+else
+  mapfile -t dirs < <(find . -maxdepth 1 -mindepth 1 -type d)
+fi
+
+for dir in "${dirs[@]}"; do
+  if [ -d "$dir/.git" ]; then
+    echo ">>> $dir"
+    (cd "$dir" && git pull)
+  else
+    echo ">>> Skipping $dir (not a git repo)"
+  fi
+done

@@ -6,27 +6,9 @@
 [init]
 	defaultBranch = main
 [safe]
-	directory = /home/wizhi/action-runner/ibexa-patch/_work/ibexa-patch/ibexa-patch
-	directory = /home/wizhi/action-runner/ibexa-patch/_work/ibexa-patch/ibexa-patch
-	directory = /home/wizhi/action-runner/ibexa-patch/_work/ibexa-patch/ibexa-patch
-	directory = /home/wizhi/action-runner/ibexa-patch/_work/ibexa-patch/ibexa-patch
-	directory = /home/wizhi/action-runner/ibexa-patch/_work/ibexa-patch/ibexa-patch
-	directory = /home/wizhi/action-runner/ibexa-patch/_work/ibexa-patch/ibexa-patch
-	directory = /home/wizhi/action-runner/ibexa-patch/_work/ibexa-patch/ibexa-patch
-	directory = /home/wizhi/action-runner/ibexa-patch/_work/ibexa-patch/ibexa-patch
-	directory = /home/wizhi/action-runner/ibexa-patch/_work/ibexa-patch/ibexa-patch
-	directory = /home/wizhi/action-runner/ibexa-patch/_work/ibexa-patch/ibexa-patch
 	directory = /home/wizhi/action-runner/_work/ibexa-patch/ibexa-patch
-	directory = /home/wizhi/action-runner/_work/ibexa-patch/ibexa-patch
-	directory = /home/wizhi/action-runner/_work/ibexa-patch/ibexa-patch
-	directory = /home/wizhi/action-runner/_work/ibexa-patch/ibexa-patch/ibexa/core-search
-	directory = /home/wizhi/action-runner/_work/ibexa-patch/ibexa-patch/ibexa/core-search
-	directory = /home/wizhi/action-runner/_work/ibexa-patch/ibexa-patch
-	directory = /home/wizhi/action-runner/_work/ibexa-patch/ibexa-patch
+	directory = /home/wizhi/action-runner/_work/ibexa-patch/ibexa-patch/ibexa/twig-components
 	directory = /home/wizhi/action-runner/_work/ibexa-patch/ibexa-patch/ibexa/core
-	directory = /home/wizhi/action-runner/_work/ibexa-patch/ibexa-patch/ibexa/core
-	directory = /home/wizhi/action-runner/_work/ibexa-patch/ibexa-patch
-	directory = /home/wizhi/action-runner/_work/ibexa-patch/ibexa-patch
+	directory = /home/wizhi/action-runner/_work/ibexa-patch/ibexa-patch/ibexa/admin-ui
+	directory = /home/wizhi/action-runner/_work/ibexa-patch/ibexa-patch/ibexa/core-search
 	directory = /home/wizhi/action-runner/_work/ibexa-patch/ibexa-patch/ibexa/oss
-	directory = /home/wizhi/action-runner/_work/ibexa-patch/ibexa-patch/ibexa/oss
-	directory = /home/wizhi/action-runner/_work/ibexa-patch/ibexa-patch

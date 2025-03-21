@@ -8,4 +8,25 @@ if [ -d "$HOME/.local/etc/zshenv.d" ]; then
   unset i
 fi
 
-skip_global_compinit=1
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+if [ -e "$HOME/.cargo/env" ] ; then
+    . "$HOME/.cargo/env"
+fi
+
+if [ -e "$HOME/export-esp.sh" ] ; then
+    . "$HOME/export-esp.sh"
+fi
+
+PATH="$PATH:$HOME/.local/share/gcc-arm-none-eabi-10.3-2021.10/bin"
+
+# pnpm
+export PNPM_HOME="/home/wizhi/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

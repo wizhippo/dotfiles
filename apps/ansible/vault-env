@@ -1,11 +1,16 @@
-#!/bin/sh
+#!/usr/bin/env bash
+set -euo pipefail
 
-SECRET=`secret-tool lookup application ansible service vault username $USER`
+secret="$(secret-tool lookup application ansible service vault username "$USER" || true)"
 
-if [ -z "$SECRET" ]; then
-    echo "No vault scret found in keychain"
-    echo "Please set using \"secret-tool store --label=\"Ansible vault secret\" application ansible service vault username $USER\" "
-    exit 1;
+if [[ -z "${secret}" ]]; then
+  cat >&2 <<EOF
+No vault secret found in keyring.
+Set it with:
+  secret-tool store --label="Ansible vault secret" application ansible service vault username "$USER"
+EOF
+  exit 1
 fi
 
-echo $SECRET
+# Print without adding a trailing newline (some tools care)
+printf '%s' "$secret"

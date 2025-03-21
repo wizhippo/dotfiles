@@ -1,7 +1,6 @@
 bash
-zsh
 git
 mc
 wsl
 gtk-3.0
-jetbrains-toolbox
+node

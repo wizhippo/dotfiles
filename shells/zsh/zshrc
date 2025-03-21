@@ -1,32 +1,42 @@
-# ~/.zshrc - Loaded only for interactive shell sessions. 
-#            It is loaded whenever you open a new terminal window or launch a subshell from a terminal window.
+# Set up the prompt
 
-autoload -U zmv
-autoload -U zargs
+autoload -Uz promptinit
+promptinit
+prompt adam1
 
-source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
+setopt histignorealldups sharehistory
 
-# https://github.com/mattjj/my-oh-my-zsh/blob/master/history.zsh
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
+# Use emacs keybindings even if our EDITOR is set to vi
+bindkey -e
+
+# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
+HISTSIZE=1000
 SAVEHIST=1000
-setopt BANG_HIST                 # Treat the '!' character specially during expansion.
-setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
-setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
-setopt SHARE_HISTORY             # Share history between all sessions.
-setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
-setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
-setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
-setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
-setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
-setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
-setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
-setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
-setopt HIST_BEEP                 # Beep when accessing nonexistent history.
+HISTFILE=~/.zsh_history
 
-TWILIO_AC_ZSH_SETUP_PATH=$HOME/.twilio-cli/autocomplete/zsh_setup && test -f $TWILIO_AC_ZSH_SETUP_PATH && source $TWILIO_AC_ZSH_SETUP_PATH; # twilio autocomplete setup
+# Use modern completion system
+autoload -Uz compinit
+compinit
+
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' menu select=2
+eval "$(dircolors -b)"
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' verbose true
+
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+[ -z "$TMUX" ] || export FZF_TMUX=1
 
 eval "$($HOME/.local/bin/oh-my-posh --init --shell zsh --config ~/.local/share/poshthemes/grandpa-style.omp.json)"
