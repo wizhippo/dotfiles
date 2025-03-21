@@ -26,5 +26,4 @@ fi
 
 export GNOME_KEYRING_CONTROL=$XDG_RUNTIME_DIR/keyring
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/gcr/ssh
-
 export GTK_THEME=Adwaita:dark

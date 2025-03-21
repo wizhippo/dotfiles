@@ -19,5 +19,11 @@
 #     - ['systemctl --user enable gnome-keyring-daemon.service', Enable gnome-keyring-daemon]
 #     - ['systemctl --user start gnome-keyring-daemon.service', Start gnome-keyring-daemon]
 
+
+- shell:
+    - ['systemctl --user enable gcr-ssh-agent.socket', Enable gnome-keyring-daemon]
+    - ['systemctl --user start gcr-ssh-agent.socket', Start gnome-keyring-daemon]
+
+
 - shell:
     - ['wget -qO- https://raw.githubusercontent.com/harry-cpp/code-nautilus/master/install.sh | bash', Open with code]

@@ -17,3 +17,4 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 export STM32CubeMX_PATH=/home/wizhi/.local/opt/STM32CubeMX
+. "$HOME/.cargo/env"
