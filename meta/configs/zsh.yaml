@@ -3,12 +3,11 @@
     - ~/.local/etc/zshenv.d
 
 - shell:
-    - ['sudo apt install -y fzf zsh', Install deps]
+    - ['sudo apt install --no-install-recommends -y fzf zsh', Install deps]
     - ['sudo chsh -s /usr/bin/zsh $USER', Make zsh default shell]
     - ['[ -d "$HOME/.local/bin/oh-my-posh" ] || wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O ~/.local/bin/oh-my-posh && chmod +x ~/.local/bin/oh-my-posh', Install oh-my-posh]
     - ['[ -d "$HOME/.local/share/poshthemes" ] || (mkdir $HOME/.local/share/poshthemes && wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -O $HOME/.local/share/poshthemes/themes.zip && unzip $HOME/.local/share/poshthemes/themes.zip -d $HOME/.local/share/poshthemes && chmod u+rw $HOME/.local/share/poshthemes/*.json && rm $HOME/.local/share/poshthemes/themes.zip)', Install oh-my-posh themes]
     - ['[ -d "$HOME/.zsh/zsh-autosuggestions" ] || git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.zsh/zsh-autosuggestions', Install zsh-autosuggestions]
-    - ['[ -d "$HOME/.zsh/zsh-syntax-highlighting" ] || git clone https://github.com/zsh-users/zsh-syntax-highlighting $HOME/.zsh/zsh-syntax-highlighting', Install zsh-syntax-highlighting]
 
 - link:
     ~/.zlogout:
@@ -21,27 +20,24 @@
         path: shells/zsh/zshrc
         force: true
 
-    ~/.local/etc/zshenv.d/10-env:
-        path: shells/zsh/zshenv.d/10-env
-        create: true
-        force: true
-    ~/.local/etc/zshenv.d/20-fzf-dh:
-        path: shells/zsh/zshenv.d/20-fzf-dh
-        create: true
-        force: true
+
+#     ~/.local/etc/zshenv.d/20-fzf-dh:
+#         path: shells/zsh/zshenv.d/20-fzf-dh
+#         create: true
+#         force: true
     ~/.local/etc/zshenv.d/25-wsl-env:
         path: shells/zsh/zshenv.d/25-wsl-env
         create: true
         force: true
-    ~/.local/etc/zshenv.d/50-php:
-        path: shells/zsh/zshenv.d/50-php
+#     ~/.local/etc/zshenv.d/50-php:
+#         path: shells/zsh/zshenv.d/50-php
+#         create: true
+#         force: true
+    ~/.local/etc/zshenv.d/50-fnm:
+        path: shells/zsh/zshenv.d/50-fnm
         create: true
         force: true
-    ~/.local/etc/zshenv.d/50-nvm:
-        path: shells/zsh/zshenv.d/50-nvm
-        create: true
-        force: true
-    ~/.local/etc/zshenv.d/50-ssh-tmux:
-        path: shells/zsh/zshenv.d/50-ssh-tmux
-        create: true
-        force: true
+#     ~/.local/etc/zshenv.d/50-ssh-tmux:
+#         path: shells/zsh/zshenv.d/50-ssh-tmux
+#         create: true
+#         force: true
